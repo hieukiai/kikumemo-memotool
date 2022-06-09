@@ -9,7 +9,6 @@ const socket = io(
   "https://kikumemo-api.kiaidev.com/speech-to-text",
   {
     autoConnect: true,
-    transports: ["websocket", "polling"]
   }
 );
 
