@@ -6,7 +6,7 @@ const recordTranscript = document.querySelector("#record-transcript");
 const languageSelect = document.querySelector("#language");
 let shouldStop = false;
 const socket = io(
-  "http://kikumemo-api.kiaidev.com/speech-to-text",
+  "https://kikumemo-api.kiaidev.com/speech-to-text",
   {
     autoConnect: true,
     transports: ["websocket", "polling"]
