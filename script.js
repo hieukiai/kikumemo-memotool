@@ -8,7 +8,7 @@ let shouldStop = false;
 const socket = io(
   "https://kikumemo-api.kiaidev.com/speech-to-text",
   {
-    autoConnect: true,
+    autoConnect: true
   }
 );
 
