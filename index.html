@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Streaming Demo</title>
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+    integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"
+    defer></script>
+  <!-- <script src="./connectionClient.js" defer></script> -->
+  <script src="./script.js" defer></script>
+</head>
+
+<body>
+  <div id="main">
+    <div style="margin-top: 30px;">
+      Language: <select name="" id="language">
+        <option value="en-US">English</option>
+        <option value="ja-JP">Japanese</option>
+        <option value="vi-VN">Vietnamese</option>
+      </select>
+    </div>
+    <div style="margin-top: 30px;">
+      <button id="record-btn" style="width: 200px;">Record</button>
+    </div>
+    <div style="margin-top: 30px;">
+      <button id="stop-record-btn" style="width: 200px;display:none;">Stop recording</button>
+    </div>
+    <div style="margin-top: 30px;display:none;" id="record-status">
+      Recording...
+    </div>
+    <div style="margin-top: 30px;display:none;" id="record-transcript">
+      Transcript:
+      <div id="transcript-container" style="width:800px;height:500px;overflow-y:scroll;">
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
