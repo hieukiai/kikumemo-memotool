@@ -82,9 +82,11 @@ async function recordAudio() {
       return;
     }
     const audioContext = new AudioContext();
-    const audioInputSorce = audioContext.createMediaStreamSource(audioInputStream);
     const mergedAudioSource = audioContext.createMediaStreamDestination();
-    audioInputSorce.connect(mergedAudioSource);
+    if (audioInputStream) {
+      const audioInputSorce = audioContext.createMediaStreamSource(audioInputStream);
+      audioInputSorce.connect(mergedAudioSource);
+    }
     if (audioOutputStream.active && audioOutputStream.getAudioTracks().length > 0) {
       const audioOutPutSorce = audioContext.createMediaStreamSource(audioOutputStream);
       audioOutPutSorce.connect(mergedAudioSource);
