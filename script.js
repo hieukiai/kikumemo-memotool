@@ -8,11 +8,10 @@ let shouldStop = false;
 const socket = io(
   "https://kikumemo-api.kiaidev.com/speech-to-text",
   {
-    transports: ["websocket"],
+    transports: ["websocket", "polling"],
     autoConnect: true
   }
 );
-
 function convertFloat32ToInt16(buffer) {
   let l = buffer.length;
   let buf = new Int16Array(l / 3);
@@ -62,8 +61,7 @@ async function recordAudio() {
     const [audioInputStream, screenStream] = await Promise.all([
       navigator.mediaDevices.getUserMedia({ audio: true })
         .catch(err => {
-          alert("Please allow permission to use microphone");
-          throw err;
+          console.log(err);
         }),
       navigator.mediaDevices.getDisplayMedia({
         video: true,
@@ -76,9 +74,13 @@ async function recordAudio() {
         stream.getVideoTracks()[0].stop();
         stream.removeTrack(stream.getVideoTracks()[0]);
       }).catch((err) => {
-        console.error('get screenStream failed', err);
+        console.log('get screenStream failed', err);
       }),
     ]);
+    if (!audioInputStream && (!audioOutputStream.active || audioOutputStream.getAudioTracks().length < 1)) {
+      alert("No audio found");
+      return;
+    }
     const audioContext = new AudioContext();
     const audioInputSorce = audioContext.createMediaStreamSource(audioInputStream);
     const mergedAudioSource = audioContext.createMediaStreamDestination();
